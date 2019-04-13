@@ -38,8 +38,8 @@ app.engine('jsx', reactEngine);
  */
 
 // db contains *ALL* of our models
-const allModels = require('./db');
-
+// require the 'db' file here, change name of 'allModels' to 'db'
+const db = require('./db');
 /**
  * ===================================
  * ===================================
@@ -50,9 +50,12 @@ const allModels = require('./db');
 
 // get the thing that contains all the routes
 const setRoutesFunction = require('./routes');
+// call it and pass in the "app" so that we can set routes on it (also 'db' or 'allModels')
+// we pass all of the db.js stuff into 'setRoutesFunction that takes 'app' and db as arguments;
+setRoutesFunction(app, db);
 
-// call it and pass in the "app" so that we can set routes on it (also models)
-setRoutesFunction(app, allModels);
+//alternatively, another way to write and combine both require('./routes') and (app,db) is to use:
+//require('./routes')(app,db);
 
 /**
  * ===================================
