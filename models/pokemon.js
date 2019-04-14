@@ -7,7 +7,8 @@ module.exports = (dbPoolInstance) => {
 
   // `dbPoolInstance` is accessible within this function scope
 
-  let getAll = {create: (pokemon, callback)=> {
+  return {
+    create: (pokemon, callback) => {
       // set up query
       const queryString = `INSERT INTO pokemons (name, num, img, weight, height)
         VALUES ($1, $2, $3, $4, $5)`;
@@ -32,8 +33,9 @@ module.exports = (dbPoolInstance) => {
       dbPoolInstance.query('SELECT * from pokemons WHERE id=$1', values, (error, queryResult) => {
         callback(error, queryResult);
       });
-    };
+    }
   };
+};
 
   // let getAll = (callback) => {
   //
@@ -57,7 +59,7 @@ module.exports = (dbPoolInstance) => {
   //   });
   // };
   //
-  return {
-    getAll,
-  };
-};
+//   return {
+//     getAll,
+//   };
+// };

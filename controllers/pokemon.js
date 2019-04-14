@@ -21,6 +21,8 @@ module.exports = (db) => {
           response.sendStatus(500);
         } else {
           // render pokemon view in the pokemon folder
+          console.log("Printing out queryResult.rows[0]]]]] in pokemon controller:... ")
+          console.log(queryResult.rows[0]);
           response.render('pokemon/Pokemon', { pokemon: queryResult.rows[0]});
         }
       });
@@ -45,6 +47,9 @@ module.exports = (db) => {
       // TODO: Add logic here
   };
 
+  const homeControllerCallback = (request, response)=>{
+    response.render('pokemon/index');
+  }
   const createFormControllerCallback = (request, response) => {
     response.render('pokemon/new');
   };
@@ -59,13 +64,15 @@ module.exports = (db) => {
         if (error) {
           console.error('error getting pokemon:', error);
           response.sendStatus(500);
-        }
-
-        if (queryResult.rowCount >= 1) {
-          console.log('Pokemon created successfully');
-        } else {
-          console.log('Pokemon could not be created');
-        }
+        }else{
+          console.log("printing out the query resultttt from creating new pokemon");
+          console.log(queryResult);
+          if (queryResult.rowCount >= 1) {
+            console.log('Pokemon created successfully');
+          } else {
+            console.log('Pokemon could not be created');
+          };
+      };
         // redirect to home page after creation
         response.redirect('/');
       });
@@ -81,6 +88,8 @@ module.exports = (db) => {
     get: getControllerCallback,
     createForm: createFormControllerCallback,
     create: createControllerCallback,
+    home: homeControllerCallback
   };
+
 
 }

@@ -7,7 +7,7 @@ class Home extends React.Component {
       <html>
         <head />
         <body>
-          <h3>Hello, this is the index page</h3>
+          <h3>We are creating new pokemon</h3>
         </body>
       </html>
     );

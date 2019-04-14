@@ -22,8 +22,9 @@ module.exports = (app, db) => {
 //(that controller function has already been passed the db instance
 
 //changed 'pokemonControllerCallbacks.index' to pokemons.create;
-  app.get('/pokemons', pokemons.create);
-  app.get('pokemon/:id', pokemons.get);
+  app.get('/pokemon', pokemons.home);
+    app.get('/', pokemons.home);
+  app.get('/pokemon/:id', pokemons.get);
   // app.get('/pokemons/:id/edit', pokemons.updateForm);
   // app.post('/pokemons/:id/edit', pokemons.update);
   app.get('/pokemons/new', pokemons.createForm);
